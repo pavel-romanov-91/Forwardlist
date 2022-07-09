@@ -21,7 +21,7 @@ public:
 
 class ForwardList
 {
-	Element* Head;
+	Element* Head;	//Голова списка
 public:
 	ForwardList()
 	{
@@ -54,6 +54,15 @@ public:
 		//3) Присоединяем новый элемент к списку:
 		Temp->pNext = New;
 	}
+	void insert(int Data, int index)
+	{
+		if (index == 0 || Head == nullptr)return push_front(Data);
+		if (index)return;
+		Element* Temp = Head;
+		for (int i = 0; i < index - 1; i++)
+			Temp = Temp->pNext;
+		Temp->pNext = new Element(Data, Temp->pNext);
+	}
 
 	//				Removing elements
 	void pop_front()
@@ -68,6 +77,17 @@ public:
 		while (Temp->pNext->pNext)Temp = Temp->pNext;
 		delete Temp->pNext;
 		Temp->pNext = nullptr;
+	}
+	void erase(int index)
+	{
+		if (index)return;
+		if (index == 0)return pop_front();
+		Element* Temp = Head;
+		for (int i = 0; i < index - 1; i++)
+			Temp = Temp->pNext;
+		Element* Erased = Temp->pNext;
+		delete Erased;
+		Temp->pNext = Erased->pNext;
 	}
 
 	//				Methods:
@@ -96,5 +116,18 @@ void main()
 	list.print();
 	list.pop_front();
 	list.pop_back();
+	list.print();
+
+	int index;
+	int value;
+
+	cout << "Введите индекс добовляемого элемента: "; cin >> index;
+	cout << "Ведите значение добавляемого элемента: "; cin >> value;
+
+	list.insert(value, index);
+	list.print();
+
+	cout << "Введите индекс удаляемого элемента: "; cin >> index;
+	list.erase(index);
 	list.print();
 }
