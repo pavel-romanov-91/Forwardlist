@@ -57,7 +57,6 @@ public:
 	void insert(int Data, int index)
 	{
 		if (index == 0 || Head == nullptr)return push_front(Data);
-		if (index)return;
 		Element* Temp = Head;
 		for (int i = 0; i < index - 1; i++)
 			Temp = Temp->pNext;
@@ -80,14 +79,13 @@ public:
 	}
 	void erase(int index)
 	{
-		if (index)return;
 		if (index == 0)return pop_front();
 		Element* Temp = Head;
 		for (int i = 0; i < index - 1; i++)
 			Temp = Temp->pNext;
 		Element* Erased = Temp->pNext;
-		delete Erased;
 		Temp->pNext = Erased->pNext;
+		delete Erased;
 	}
 
 	//				Methods:
