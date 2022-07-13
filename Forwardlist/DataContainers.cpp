@@ -284,7 +284,13 @@ void main()
 	cout << endl;
 #endif // RENGE_BASED_ARRAY
 
-	ForwardList list = { 3,5,8,13,21 };
-	list.print();
-
+	/*ForwardList list = { 3,5,8,13,21 };
+	list.print();*/
+	
+	int arr[] = { 3,5,8,13,21 };
+	for (int i = 0; i < sizeof(arr) / sizeof(int); i++)
+	{
+		cout << arr[i] << tab;
+	}
+	cout << endl;
 }
