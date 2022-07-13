@@ -340,10 +340,16 @@ void main()
 
 	ForwardList list = { 3,5,8,13,21 };
 	list.print();
+	
 	for (int i: list)
 	{
 		cout << i << tab;
 	}
 	cout << endl;
 	
+	for (Iterator it = list.begin(); it != list.end(); ++it)
+	{
+		cout << *it << tab;
+	}
+	cout << endl;
 }
