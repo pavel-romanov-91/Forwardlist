@@ -24,16 +24,69 @@ public:
 		cout << "EDestructor:\t" << this << endl;
 	}
 	friend class ForwardList;
+	friend class Iterator;
 	friend ForwardList operator+(const ForwardList& left, const ForwardList& right);
+
 };
 
 int Element::count = 0;
+
+class Iterator
+{
+	Element* Temp;
+public:
+	Iterator(Element* Temp = nullptr) :Temp(Temp)
+	{
+		cout << "ItConstructor:\t" << this << endl;
+	}
+	~Iterator()
+	{
+		cout << "ItDestructor:\t" << this << endl;
+	}
+
+	Iterator& operator++()
+	{
+		Temp = Temp->pNext;
+		return *this;
+	}
+	Iterator operator++(int)
+	{
+		Iterator old = *this;
+		Temp = Temp->pNext;
+		return old;
+	}
+	bool operator==(const Iterator& other)const
+	{
+		return this->Temp == other.Temp;
+	}
+	bool operator!=(const Iterator& other)const
+	{
+		return this->Temp != other.Temp;
+	}
+
+	const int& operator*()const
+	{
+		return Temp->Data;
+	}
+	int& operator*()
+	{
+		return Temp->Data;
+	}
+};
 
 class ForwardList
 {
 	Element* Head;	//Голова списка
 	unsigned int size;
 public:
+	Iterator begin()
+	{
+		return Head;
+	}
+	Iterator end()
+	{
+		return nullptr;
+	}
 	ForwardList()
 	{
 		Head = nullptr;
@@ -96,6 +149,7 @@ public:
 		cout << "MoveAssignment:\t" << this << endl;
 		return *this;
 	}
+
 
 		//				Adding Elements
 	void push_front(int Data)
@@ -284,13 +338,12 @@ void main()
 	cout << endl;
 #endif // RENGE_BASED_ARRAY
 
-	/*ForwardList list = { 3,5,8,13,21 };
-	list.print();*/
-	
-	int arr[] = { 3,5,8,13,21 };
-	for (int i = 0; i < sizeof(arr) / sizeof(int); i++)
+	ForwardList list = { 3,5,8,13,21 };
+	list.print();
+	for (int i: list)
 	{
-		cout << arr[i] << tab;
+		cout << i << tab;
 	}
 	cout << endl;
+	
 }
