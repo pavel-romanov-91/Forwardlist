@@ -3,6 +3,7 @@ using namespace std;
 
 #define tab "\t"
 
+
 class Forward_List
 {
 	class Element
@@ -56,6 +57,14 @@ public:
 	//				Removing elements
 	void pop_front()
 	{
+		if (Head == nullptr && Tail == nullptr)return;
+		if (Head == Tail)
+		{
+			delete Head;
+			Head = Tail = nullptr;
+			size--;
+			return;
+		}
 		Element* erased = Head;
 		Head = Head->pNext;
 		delete Head->pPrev;    
