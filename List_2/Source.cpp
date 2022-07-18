@@ -34,7 +34,7 @@ public:
 	}
 	~Forward_List()
 	{
-		while (Head);
+		while (Head)pop_front();
 		cout << "LDestructor:\t" << this << endl;
 	}
 
@@ -50,6 +50,7 @@ public:
 		Element* New = new Element(Data);
 		New->pNext = Head;
 		Head->pPrev = New;
+		Head = New;
 	}
 
 	//				Removing elements
@@ -57,7 +58,7 @@ public:
 	{
 		Element* erased = Head;
 		Head = Head->pNext;
-		delete Head->pPrev;
+		delete Head->pPrev;    
 		Head->pPrev = nullptr;
 		size--;
 	}
