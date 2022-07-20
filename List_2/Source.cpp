@@ -75,10 +75,18 @@ public:
 	//				Methods
 	void print()const
 	{
+		cout << "Head: " << Head << endl;
 		for (Element* Temp = Head; Temp; Temp = Temp->pNext)
 			cout << Temp << tab << Temp->pPrev << tab << Temp->Data << tab << Temp->pNext << endl;
+		cout << "Количество элементов " << size << endl;
 	}
-	
+	void revers_print()const
+	{
+		cout << "Tail: " << Head << endl;
+		for (Element* Temp = Head; Temp; Temp = Temp->pNext)
+			cout << Temp << tab << Temp->pPrev << tab << Temp->Data << tab << Temp->pNext << endl;
+		cout << "Количество элементов " << size << endl;
+	}
 };
 
 void main()
