@@ -61,7 +61,7 @@ public:
 			Head = Head->pPrev = new Element(Data, Head);
 		size++;
 	}
-	void push_bavk(int Data)
+	void push_back(int Data)
 	{
 		/*Element* New = new Element(Data);
 		if (Head == nullptr && Tail == nullptr)
@@ -81,6 +81,33 @@ public:
 			Tail = Tail->pNext = new Element(Data, nullptr, Tail);
 		size++;
 	}
+	void insert(int Data, int index)
+	{
+		if (index > size)return;
+		if (index == 0)return push_front(Data);
+		if (index == size)return push_back(Data);
+
+		Element* Temp;
+		if (index < size / 2)
+		{
+			Temp = Head;
+			for (int i = 0; i < index; i++)Temp = Temp->pNext;
+		}
+		else
+		{
+			Temp = Tail;
+			for (int i = 0; i < size - index -  1; i++)Temp = Temp->pPrev;
+		}
+		/*Element* New = new Element(Data);
+		New->pNext = Temp;
+		New->pPrev = Temp->pPrev;
+		Temp->pPrev->pNext = New;
+		Temp->pPrev = New;
+		size++;*/
+		Temp->pPrev = Temp->pPrev->pNext = new Element(Data, Temp, Temp->pPrev);
+		size++;
+	}
+
 
 	//							Removing Elements:
 	void pop_front()
@@ -105,6 +132,27 @@ public:
 		Tail = Tail->pPrev;
 		delete Tail->pNext;
 		Tail->pNext = nullptr;
+		size--;
+	}
+	void erase(int index)
+	{
+		if (index >= size)return;
+		if (index == 0)return pop_front();
+
+		Element* Temp;
+		if (index < size / 2)
+		{
+			Temp = Head;
+			for (int i = 0; i < index; i++)Temp = Temp->pNext;
+		}
+		else
+		{
+			Temp = Tail;
+			for (int i = 0; i < size - index - 1; i++)Temp = Temp->pPrev;
+		}
+		Temp->pPrev->pNext = Temp->pNext;
+		Temp->pNext->pPrev = Temp->pPrev;
+		delete Temp;
 		size--;
 	}
 	//						Methods:
@@ -133,8 +181,20 @@ void main()
 	for (int i = 0; i < n; i++)
 	{
 		//list.push_front(rand() % 100);
-		list.push_bavk(rand() % 100);
+		list.push_back(rand() % 100);
 	}
+	list.print();
+	list.reverse_print();
+
+	int value;
+	int index;
+	cout << "Введите значение добавляемого элемента: "; cin >> value;
+	cout << "Введите индекс добавляемого элемента: "; cin >> index;
+	list.insert(value, index);
+	list.print();
+	list.reverse_print();
+	cout << "Введите индекс удоляемого элемента: "; cin >> index;
+	list.erase(index);
 	list.print();
 	list.reverse_print();
 }
