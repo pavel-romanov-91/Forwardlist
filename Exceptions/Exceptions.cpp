@@ -23,7 +23,7 @@ void main()
 
 	//cout << 2 / 0 << endl;
 	int a, b;
-	cout << " : "; cin >> a >> b;
+	cout << "Ведите два числа: "; cin >> a >> b;
 	try
 	{
 		cout << a / b << endl;
@@ -32,4 +32,5 @@ void main()
 	{
 		cerr << "Something happened :-(\n" << endl;
 	}
+	
 }
