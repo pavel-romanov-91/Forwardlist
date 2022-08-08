@@ -1,4 +1,4 @@
-#include<iostream>
+ï»¿#include<iostream>
 using namespace std;
 
 //#define TRY_SYNTAX
@@ -21,9 +21,9 @@ void main()
 	}
 #endif // TRY_SYNTAX
 
-	//cout << 2 / 0 << endl;
+	cout << 2 / 0 << endl;
 	int a, b;
-	cout << "Âåäèòå äâà ÷èñëà: "; cin >> a >> b;
+	cout << "Ð’ÐµÐ´Ð¸Ñ‚Ðµ Ð´Ð²Ð° Ñ‡Ð¸ÑÐ»Ð°: "; cin >> a >> b;
 	try
 	{
 		cout << a / b << endl;
@@ -33,4 +33,6 @@ void main()
 		cerr << "Something happened :-(\n" << endl;
 	}
 	
+	
 }
+
