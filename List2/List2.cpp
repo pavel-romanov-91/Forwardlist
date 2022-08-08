@@ -27,11 +27,41 @@ class List
 	Element* Tail;*/
 	unsigned int size;
 public:
+	class Iterator
+	{
+		Element;
+
+		bool operator==(const Iterator& other)const
+		{
+			return this->Temp == other.Temp;
+		}
+		bool operator!=(const Iterator&);
+	}
+
+
+	Iterator::Iterator()
+	{
+	}
+
+	Iterator::~Iterator()
+	{
+	}
+	Iterator begin()
+	{
+		return begin()
+	}
+
 	List()
 	{
 		Head = Tail = nullptr;
 		size = 0;
 		cout << "LConstractor:\t" << this << endl;
+	}
+	List(const std::initializer_list<int>& il) :List()
+	{
+		/*for (int const* it = il.begin(); it != il.end(); ++it)
+			push_back(*it);*/
+		for (int i : il)push_back(i);
 	}
 	~List()
 	{
@@ -83,7 +113,8 @@ public:
 	}
 	void insert(int Data, int index)
 	{
-		if (index > size)return;
+		if (index > size)throw std::out_of_range("Error: Out of range exception in insert");
+			//throw exception("Error: Out of range");
 		if (index == 0)return push_front(Data);
 		if (index == size)return push_back(Data);
 
@@ -136,7 +167,7 @@ public:
 	}
 	void erase(int index)
 	{
-		if (index >= size)return;
+		if (index >= size)throw std::out_of_range("Error: Out of range exception in erase()");
 		if (index == 0)return pop_front();
 
 		Element* Temp;
@@ -172,9 +203,12 @@ public:
 	}
 };
 
+//#define BASE_CHECK
+
 void main()
 {
 	setlocale(LC_ALL, "");
+#ifdef BASE_CHECK
 	int n;
 	cout << "Введите размер списка: "; cin >> n;
 	List list;
@@ -190,11 +224,30 @@ void main()
 	int index;
 	cout << "Введите значение добавляемого элемента: "; cin >> value;
 	cout << "Введите индекс добавляемого элемента: "; cin >> index;
-	list.insert(value, index);
-	list.print();
-	list.reverse_print();
+	try
+	{
+		list.insert(value, index);
+		list.print();
+		list.reverse_print();
+	}
+	catch (const std::exception& e)
+	{
+		std::cerr << e.what() << endl;
+	}
 	cout << "Введите индекс удоляемого элемента: "; cin >> index;
-	list.erase(index);
+	try
+	{
+		list.erase(index);
+		list.print();
+		list.reverse_print();
+	}
+	catch (const std::exception& e)
+	{
+		std::cerr << e.what() << endl;
+	}
+#endif // BASE_CHECK
+
+	List list = { 3,5,8,13,21 };
 	list.print();
-	list.reverse_print();
+	for (int i : list)cout << i << tab; cout << endl;
 }
