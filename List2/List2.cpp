@@ -49,7 +49,7 @@ public:
 		{
 			Iterator old = *this;
 			Temp = Temp->pNext;
-			return old;
+			return old; 
 		}
 		Iterator& operator--()
 		{
