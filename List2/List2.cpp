@@ -15,11 +15,15 @@ class List
 		Element(int Data, Element* pNext = nullptr, Element* pPrev = nullptr)
 			:Data(Data), pNext(pNext), pPrev(pPrev)
 		{
+#ifdef DEBUG
 			cout << "EConstructor:\t" << this << endl;
+#endif // DEBUG
 		}
 		~Element()
 		{
+#ifdef DEBUG
 			cout << "EDestructor:\t" << this << endl;
+#endif // DEBUG
 		}
 		friend class List;
 	}*Head, *Tail;
@@ -33,11 +37,15 @@ class List
 	public:
 		ConstBaseIterator(Element* Temp = nullptr) :Temp(Temp)
 		{
+#ifdef DEBUG
 			cout << "CBItConstructor:\t" << this << endl;
+#endif // DEBUG
 		}
 		~ConstBaseIterator()
 		{
+#ifdef DEBUG
 			cout << "CBItDestructor:\t" << this << endl;
+#endif // DEBUG
 		}
 
 		bool operator==(const ConstBaseIterator& other)const
@@ -100,15 +108,11 @@ public:
 	public:
 		ConstReverseIterator(Element* Temp) :ConstBaseIterator(Temp)
 		{
-#ifdef DEBUG
 			cout << "CRItConstructor:\t" << this << endl;
-#endif // DEBUG
 		}
 		~ConstReverseIterator()
 		{
-#ifdef DEBUG
 			cout << "CRItDestructor:\t" << this << endl;
-#endif // DEBUG
 		}
 
 		ConstReverseIterator& operator++()
