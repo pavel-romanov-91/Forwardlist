@@ -41,6 +41,15 @@ public:
 	{
 		cout << "TConstructor:\t" << this << endl;
 	}
+	Tree(const std::initializer_list<int>& il) :Tree()
+	{
+		for (int const* it = il.begin(); it != il.end(); it++)
+			insert(*it, Root);
+	}
+	Tree(const Tree& other) :Tree()
+	{
+		copy(other.Root);
+	}
 	~Tree()
 	{
 		clear(Root);
@@ -85,13 +94,23 @@ public:
 		if (Root == nullptr)return int();
 		else return Sum(Root->pLeft) + Sum(Root->pRight) + Root->Data;
 	}
-	int Avg(Element* Root)const
+	double Avg(Element* Root)const
 	{
 		return (double)Sum(Root) / Count(Root);
 	}
 	int depth(Element* Root)const
 	{
-
+		if (Root == NULL)
+			return 0;
+		else
+		{
+			int pLeft = depth(Root->pLeft);
+			int pRight = depth(Root->pRight);
+			if (pLeft <= pRight)
+				return pRight + 1;
+			else
+				return pLeft + 1;
+		}
 	}
 	void clear(Element* Root)const
 	{
@@ -100,7 +119,7 @@ public:
 		clear(Root->pRight);
 		delete Root;
 	}
-	void erase(int Data, Element*& Root)
+	void erase(int Data, Element* Root)
 	{
 		if (Root == nullptr)return;
 		erase(Data, Root->pLeft);
@@ -126,6 +145,14 @@ public:
 				}
 			}
 		}
+	}
+	void copy(Element* Root)
+	{
+		if (Root == nullptr)return;
+		insert(Root->Data, this->Root);
+		copy(Root->pLeft);
+		copy(Root->pRight);
+		cout << "CopyConstructor\t" << this << endl;
 	}
 
 	void print(Element* Root)const
@@ -159,9 +186,13 @@ void main()
 	cout << "Количество элементов: " << tree.Count(tree.getRoot()) << endl;
 	cout << "Сумма элементов: " << tree.Sum(tree.getRoot()) << endl;
 	cout << "Среднее-арифметическое элементов: " << tree.Avg(tree.getRoot()) << endl;
-	int value;
-	cout << "Удаление заданного значения из дерева: "; cin >> s;
-	tree.erase(value, tree.getRoot());
-	tree.print(tree.getRoot());
-
+	cout << "Глубину дерева: " << tree.depth(tree.getRoot()) << endl;
+	/*int value;
+	cout << "Удаление заданного значения из дерева: "; cin >> value;
+	Tree tree1 = tree;
+	tree1.erase(value, tree.getRoot());
+	tree1.print(tree.getRoot());*/
+	
+	Tree tree2 = tree;
+	tree2.print(tree.getRoot());
 }
