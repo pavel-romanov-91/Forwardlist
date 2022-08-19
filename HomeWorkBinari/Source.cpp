@@ -1,4 +1,4 @@
-#include<iostream>
+ï»¿#include<iostream>
 using std::cin;
 using std::cout;
 using std::endl;
@@ -215,7 +215,7 @@ void main()
 {
 	setlocale(LC_ALL, "");
 	int n;
-	cout << "Ââåäèòå ðàçìåð äåðåâà: "; cin >> n;
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ€Ð°Ð·Ð¼ÐµÑ€ Ð´ÐµÑ€ÐµÐ²Ð°: "; cin >> n;
 	Tree tree;
 	for (int i = 0; i < n; i++)
 	{
@@ -225,14 +225,14 @@ void main()
 	}
 	tree.print();
 	cout << endl;
-	cout << "Ìèíåìàëüíîå çíà÷åíèå: " << tree.minValue() << endl;
-	cout << "Ìàêñèìàëüíîå çíà÷åíèå: " << tree.maxValue() << endl;
-	cout << "Êîëè÷åñòâî ýëåìåíòîâ: " << tree.Count() << endl;
-	cout << "Ñóììà ýëåìåíòîâ: " << tree.Sum() << endl;
-	cout << "Ñðåäíåå-àðèôìåòè÷åñêîå ýëåìåíòîâ: " << tree.Avg() << endl;
-	cout << "Ãëóáèíó äåðåâà: " << tree.depth() << endl;
+	cout << "ÐœÐ¸Ð½ÐµÐ¼Ð°Ð»ÑŒÐ½Ð¾Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ: " << tree.minValue() << endl;
+	cout << "ÐœÐ°ÐºÑÐ¸Ð¼Ð°Ð»ÑŒÐ½Ð¾Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ: " << tree.maxValue() << endl;
+	cout << "ÐšÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð¾Ð²: " << tree.Count() << endl;
+	cout << "Ð¡ÑƒÐ¼Ð¼Ð° ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð¾Ð²: " << tree.Sum() << endl;
+	cout << "Ð¡Ñ€ÐµÐ´Ð½ÐµÐµ-Ð°Ñ€Ð¸Ñ„Ð¼ÐµÑ‚Ð¸Ñ‡ÐµÑÐºÐ¾Ðµ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð¾Ð²: " << tree.Avg() << endl;
+	cout << "Ð“Ð»ÑƒÐ±Ð¸Ð½Ñƒ Ð´ÐµÑ€ÐµÐ²Ð°: " << tree.depth() << endl;
 	int value;
-	cout << "Óäàëåíèå çàäàííîãî çíà÷åíèÿ èç äåðåâà: "; cin >> value;
+	cout << "Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ Ð·Ð°Ð´Ð°Ð½Ð½Ð¾Ð³Ð¾ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ñ Ð¸Ð· Ð´ÐµÑ€ÐµÐ²Ð°: "; cin >> value;
 	tree.erase(value);
 	tree.print();
 	Tree tree1 = tree;
