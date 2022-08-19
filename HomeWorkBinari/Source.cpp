@@ -30,7 +30,7 @@ class Tree
 			cout << "EDestructor:\t" << this << endl;
 #endif // DEBUG
 		}
-	friend class Tree;
+		friend class Tree;
 	}*Root;
 public:
 	Element* getRoot()const
@@ -47,6 +47,49 @@ public:
 		cout << "TDestructor:\t" << this << endl;
 	}
 
+	void insert(int Data)
+	{
+		insert(Data, this->Root);
+	}
+	int minValue()const
+	{
+		return minValue(Root);
+	}
+	int maxValue()const
+	{
+		return maxValue(Root);
+	}
+	int Count()const
+	{
+		return Count(Root);
+	}
+	int Sum()const
+	{
+		return Sum(Root);
+	}
+	int Avg()const
+	{
+		return Avg(Root);
+	}
+	int depth()const
+	{
+		return depth(Root);
+	}
+	void clear()const
+	{
+		return clear(Root);
+	}
+	void erase(int Data)
+	{
+		erase(Data, Root);
+	}
+	void print()const
+	{
+		print(Root);
+		cout << endl;
+	}
+
+private:
 	void insert(int Data, Element* Root)
 	{
 		if (this->Root == nullptr)this->Root = new Element(Data);
@@ -77,6 +120,7 @@ public:
 	}
 	int Count(Element* Root)const
 	{
+		if (Root == nullptr)return int();
 		if (Root == nullptr)return 0;
 		else return Count(Root->pLeft) + Count(Root->pRight) + 1;
 	}
@@ -135,7 +179,7 @@ public:
 		cout << Root->Data << tab;
 		print(Root->pRight);
 	}
-	
+
 };
 
 
@@ -150,18 +194,18 @@ void main()
 	{
 		int number = rand() % 100;
 		cout << number << tab;
-		tree.insert(number, tree.getRoot());
+		tree.insert(number);
 	}
-	tree.print(tree.getRoot());
+	tree.print();
 	cout << endl;
-	cout << "Минемальное значение: " << tree.minValue(tree.getRoot()) << endl;
-	cout << "Максимальное значение: " << tree.maxValue(tree.getRoot()) << endl;
-	cout << "Количество элементов: " << tree.Count(tree.getRoot()) << endl;
-	cout << "Сумма элементов: " << tree.Sum(tree.getRoot()) << endl;
-	cout << "Среднее-арифметическое элементов: " << tree.Avg(tree.getRoot()) << endl;
+	cout << "Минемальное значение: " << tree.minValue() << endl;
+	cout << "Максимальное значение: " << tree.maxValue() << endl;
+	cout << "Количество элементов: " << tree.Count() << endl;
+	cout << "Сумма элементов: " << tree.Sum() << endl;
+	cout << "Среднее-арифметическое элементов: " << tree.Avg() << endl;
 	int value;
-	cout << "Удаление заданного значения из дерева: "; cin >> s;
-	tree.erase(value, tree.getRoot());
-	tree.print(tree.getRoot());
+	cout << "Удаление заданного значения из дерева: "; cin >> value;
+	tree.erase(value);
+	tree.print();
 
 }
