@@ -143,8 +143,7 @@ private:
 	}
 	int depth(Element* Root)const
 	{
-		if (Root == NULL)
-			return 0;
+		if (Root == NULL)return 0;
 		else
 		{
 			int pLeft = depth(Root->pLeft);
@@ -237,4 +236,4 @@ void main()
 	tree.print();
 	Tree tree1 = tree;
 	tree1.print();
-}
+} 

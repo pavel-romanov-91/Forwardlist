@@ -187,11 +187,11 @@ void main()
 	cout << "Сумма элементов: " << tree.Sum(tree.getRoot()) << endl;
 	cout << "Среднее-арифметическое элементов: " << tree.Avg(tree.getRoot()) << endl;
 	cout << "Глубину дерева: " << tree.depth(tree.getRoot()) << endl;
-	/*int value;
+	int value;
 	cout << "Удаление заданного значения из дерева: "; cin >> value;
 	Tree tree1 = tree;
 	tree1.erase(value, tree.getRoot());
-	tree1.print(tree.getRoot());*/
+	tree1.print(tree.getRoot());
 	
 	Tree tree2 = tree;
 	tree2.print(tree.getRoot());
